@@ -13,21 +13,40 @@
   <project_license>LicenseRef-proprietary=https://legal.max.ru/ps</project_license>
   <url type="homepage">https://max.ru/</url>
   <url type="help">https://help.max.ru/</url>
-  <content_rating type="oars-1.1"/>
   <update_contact>help@max.ru</update_contact>
   <description>
+    <p>**This package is not verified by, affiliated with, or supported by max.ru.**</p>
+    <p>**To register in the messenger, a valid Russian, Belarusian, Armenia, Kazakhstan, Moldova, Kyrgyzstan, Azerbaijan, Tajikistan or Uzbekistan mobile phone number is required.**</p>
     <p>Messenger with a built-in mini-app platform, chatbot builders, and a payment system.</p>
-    <p>To register in the messenger, a valid Russian, Belarusian, Armenia, Kazakhstan, Moldova, Kyrgyzstan, Azerbaijan, Tajikistan or Uzbekistan mobile phone number is required.</p>
-    <p>This package is not verified by, affiliated with, or supported by MAX.</p>
+    <p xml:lang="ru">**Этот пакет не проверен, не связан и не поддерживается max.ru.**</p>
+    <p xml:lang="ru">**Для регистрации в мессенджере необходим действующий номер мобильного телефона России, Беларуси, Армении, Казахстана, Молдовы, Киргизии, Азербайджана, Таджикистана или Узбекистана.***</p>
     <p xml:lang="ru">MAX — это быстрое и лёгкое приложение для обмена сообщениями, которое работает на любых устройствах — смартфонах и компьютерах. В него также встроена платформа мини-приложений, конструкторы чат-ботов и платежная система.</p>
-    <p xml:lang="ru">Для регистрации в мессенджере необходим действующий номер мобильного телефона России, Беларуси, Армении, Казахстана, Молдовы, Киргизии, Азербайджана, Таджикистана или Узбекистана.</p>
-    <p xml:lang="ru">Этот пакет не проверен, не связан и не поддерживается MAX.</p>
   </description>
   <screenshots>
     <screenshot type="default">
       <image>https://raw.githubusercontent.com/flathub/flathub/9dab43d5b07b7691c72e79e2a9738626d880a73d/screenshot.png</image>
     </screenshot>
   </screenshots>
+  <categories>
+    <category>Network</category>
+    <category>InstantMessaging</category>
+    <category>VideoConference</category>
+    <category>Telephony</category>
+  </categories>
+  <content_rating type="oars-1.1">
+    <content_attribute id="social-chat">intense</content_attribute>
+    <content_attribute id="social-info">intense</content_attribute>
+    <content_attribute id="social-audio">intense</content_attribute>
+    <content_attribute id="social-contacts">intense</content_attribute>
+  </content_rating>
+  <requires>
+    <internet>always</internet>
+  </requires>
+  <recommends>
+    <control>keyboard</control>
+    <control>pointing</control>
+    <control>touch</control>
+  </recommends>
   <releases>
     <release version="25.8.0-490" date="2025-08-28">
       <description></description>
