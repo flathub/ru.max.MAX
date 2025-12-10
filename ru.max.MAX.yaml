@@ -32,8 +32,8 @@ modules:
     sources:
       - type: extra-data
         url: https://download.max.ru/electron/MAX.deb
-        sha256: 133d3e4c2194cf6f2adc0e4c3ba0fccc367928a5c6cb6e644ff0947967c612a3
-        size: 93800952
+        sha256: 1787587f78fe456642609a3ccc9c5485435d8ccfa9acdaeef1a6a3541ecd7727
+        size: 93800448
         filename: MAX.deb
         x-checker-data:
           type: rotating-url
@@ -48,7 +48,8 @@ modules:
         commands:
           - export TMPDIR="${XDG_RUNTIME_DIR}/app/${FLATPAK_ID}"
           # https://issues.chromium.org/issues/404298968
-          - zypak-wrapper /app/extra/MAX --ozone-platform-hint=auto --disable-features=GlobalShortcutsPortal --enable-features=WebRtcPipeWireCamera "$@"
+          - zypak-wrapper /app/extra/MAX --ozone-platform-hint=auto --disable-features=GlobalShortcutsPortal
+            --enable-features=WebRtcPipeWireCamera "$@"
       - type: file
         path: ru.max.MAX.desktop
       - type: file
