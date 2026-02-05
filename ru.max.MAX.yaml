@@ -31,16 +31,13 @@ modules:
       - install -Dm 644 ${FLATPAK_ID}.desktop ${FLATPAK_DEST}/share/applications/${FLATPAK_ID}.desktop
     sources:
       - type: extra-data
-        url: https://download.max.ru/linux/deb/pool/main/m/max/MAX-26.2.2.43936.deb
-        sha256: a21e59bf846556a5f486807a4df1cfa597110e0e931fc0f41515000b1d2d01c7
-        size: 287986278
+        url: https://download.max.ru/electron/MAX.deb
+        sha256: 1787587f78fe456642609a3ccc9c5485435d8ccfa9acdaeef1a6a3541ecd7727
+        size: 93800448
         filename: MAX.deb
         x-checker-data:
-          type: debian-repo
-          package-name: max
-          root: https://download.max.ru/linux/deb
-          dist: stable
-          component: main
+          type: rotating-url
+          url: https://download.max.ru/electron/MAX.deb
       - type: script
         dest-filename: apply_extra.sh
         commands:
