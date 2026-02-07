@@ -1,55 +1,119 @@
 app-id: ru.max.MAX
-runtime: org.freedesktop.Platform
-runtime-version: '25.08'
-sdk: org.freedesktop.Sdk
-base: org.electronjs.Electron2.BaseApp
-base-version: '25.08'
-command: start-max
+runtime: org.kde.Platform
+runtime-version: '6.9'
+sdk: org.kde.Sdk
+base: io.qt.qtwebengine.BaseApp
+base-version: '6.9'
+command: max
 separate-locales: false
 tags:
   - proprietary
 finish-args:
-  - --device=dri
+  - --device=all
   - --share=ipc
   - --share=network
   - --socket=pulseaudio
-  - --socket=wayland
-  - --socket=fallback-x11
+  - --socket=x11 # MAX does not support wayland or fallback-x11
+  - --env=QTWEBENGINEPROCESS_PATH=/app/bin/QtWebEngineProcess
   - --talk-name=org.kde.StatusNotifierWatcher
   - --filesystem=xdg-run/pipewire-0:ro
   - --filesystem=xdg-download
-  - --env=XCURSOR_PATH=/run/host/user-share/icons:/run/host/share/icons
-  - --env=ELECTRON_TRASH=gio
 modules:
+  - name: xorg-font-util
+    buildsystem: autotools
+    sources:
+      - type: git
+        url: https://gitlab.freedesktop.org/xorg/font/util.git
+        commit: b5ca142f81a6f14eddb23be050291d1c25514777
+        tag: font-util-1.4.1
+        x-checker-data:
+          type: anitya
+          project-id: 15055
+          tag-template: font-util-$version
+    cleanup:
+      - /share/man
+  - name: libfontenc
+    buildsystem: autotools
+    sources:
+      - type: git
+        url: https://gitlab.freedesktop.org/xorg/lib/libfontenc.git
+        commit: 92a85fda2acb4e14ec0b2f6d8fe3eaf2b687218c
+        tag: libfontenc-1.1.8
+        x-checker-data:
+          type: anitya
+          project-id: 1613
+          tag-template: libfontenc-$version
+  - name: libXmu
+    buildsystem: autotools
+    sources:
+      - type: git
+        url: https://gitlab.freedesktop.org/xorg/lib/libxmu.git
+        commit: cdf280f6611932f79ab872832974e8043b1cad6d
+        tag: libXmu-1.3.1
+        x-checker-data:
+          type: anitya
+          project-id: 1785
+          tag-template: libXmu-$version
+    cleanup:
+      - /share/doc
+      - /share/man
+  - name: libXaw
+    buildsystem: autotools
+    sources:
+      - type: git
+        url: https://gitlab.freedesktop.org/xorg/lib/libxaw.git
+        commit: f14ba54e9c7e415a05e33dd0b3b5f96e5de05c8b
+        tag: libXaw-1.0.16
+        x-checker-data:
+          type: anitya
+          project-id: 1766
+          tag-template: libXaw-$version
+    cleanup:
+      - /share/doc
+      - /share/man
+  - name: libXRes
+    buildsystem: autotools
+    sources:
+      - type: git
+        url: https://gitlab.freedesktop.org/xorg/lib/libxres.git
+        commit: 30c789e5065f7af7d6a03c09e3ceb073ed810bdd
+        tag: libXres-1.2.3
+        x-checker-data:
+          type: anitya
+          project-id: 1790
+          tag-template: libXres-$version
+    cleanup:
+      - /share/man
   - name: max
     buildsystem: simple
     build-commands:
-      - install -Dm 755 start-max ${FLATPAK_DEST}/bin
+      - install -Dm 755 max.sh ${FLATPAK_DEST}/bin/max
       - install -Dm 755 apply_extra.sh ${FLATPAK_DEST}/bin/apply_extra
       - install -Dm 644 ${FLATPAK_ID}.metainfo.xml ${FLATPAK_DEST}/share/metainfo/${FLATPAK_ID}.metainfo.xml
       - install -Dm 644 MAX.png ${FLATPAK_DEST}/share/icons/hicolor/512x512/apps/${FLATPAK_ID}.png
       - install -Dm 644 ${FLATPAK_ID}.desktop ${FLATPAK_DEST}/share/applications/${FLATPAK_ID}.desktop
     sources:
       - type: extra-data
-        url: https://download.max.ru/electron/MAX.deb
-        sha256: 1787587f78fe456642609a3ccc9c5485435d8ccfa9acdaeef1a6a3541ecd7727
-        size: 93800448
         filename: MAX.deb
+        url: https://download.max.ru/linux/deb/pool/main/m/max/MAX-26.3.0.45842.deb
+        sha256: 8f519e27bda9cc134cbfcf794863715f9de1c9d7513f09e9427c700d1b4dd0ff
+        size: 288102270
         x-checker-data:
-          type: rotating-url
-          url: https://download.max.ru/electron/MAX.deb
+          type: debian-repo
+          package-name: max
+          root: https://download.max.ru/linux/deb
+          dist: stable
+          component: main
       - type: script
         dest-filename: apply_extra.sh
         commands:
-          - bsdtar -Oxf MAX.deb data.tar.xz | bsdtar -xf - --strip-components=3 ./opt/MAX
+          - bsdtar -Oxf MAX.deb data.tar.xz | bsdtar -xf - --strip-components=3 ./usr/share/max
           - rm MAX.deb
       - type: script
-        dest-filename: start-max
+        dest-filename: max.sh
         commands:
-          - export TMPDIR="${XDG_RUNTIME_DIR}/app/${FLATPAK_ID}"
-          # https://issues.chromium.org/issues/404298968
-          - zypak-wrapper /app/extra/MAX --ozone-platform-hint=auto --disable-features=GlobalShortcutsPortal
-            --enable-features=WebRtcPipeWireCamera "$@"
+          - export LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:/app/share/max/lib64:/app/share/max/lib
+          - /app/extra/max/bin/max "$@"
       - type: file
         path: ru.max.MAX.desktop
       - type: file
