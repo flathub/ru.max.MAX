@@ -1,6 +1,6 @@
 [Desktop Entry]
 Name=MAX
-Exec=start-max %U
+Exec=max %U
 Terminal=false
 Type=Application
 Icon=ru.max.MAX
