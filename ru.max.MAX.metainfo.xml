@@ -47,6 +47,9 @@
     <control>touch</control>
   </recommends>
   <releases>
+    <release version="26.4.0" date="2026-02-10">
+      <description></description>
+    </release>
     <release version="26.3.0" date="2026-02-06">
       <description><p>Update MAX.deb to 26.3.0</p></description>
     </release>
@@ -54,7 +57,7 @@
       <description><p>Update MAX.deb to 25.12.0-510</p></description>
     </release>
     <release version="25.8.0-490" date="2025-08-28">
-      <description></description>
+      <description/>
     </release>
   </releases>
 </component>
