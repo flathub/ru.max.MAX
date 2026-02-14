@@ -18,6 +18,18 @@ finish-args:
   - --talk-name=org.kde.StatusNotifierWatcher
   - --filesystem=xdg-run/pipewire-0:ro
   - --filesystem=xdg-download
+cleanup:
+    - /include
+    - /lib/cmake
+    - /lib/*/cmake
+    - /lib/pkgconfig
+    - /mkspecs
+    - /share/doc
+    - /share/man
+    - '*.la'
+    - '*.a'
+cleanup-commands:
+    - /app/cleanup-BaseApp.sh
 modules:
   - name: xorg-font-util
     buildsystem: autotools
@@ -30,8 +42,6 @@ modules:
           type: anitya
           project-id: 15055
           tag-template: font-util-$version
-    cleanup:
-      - /share/man
   - name: libfontenc
     buildsystem: autotools
     sources:
@@ -54,9 +64,6 @@ modules:
           type: anitya
           project-id: 1785
           tag-template: libXmu-$version
-    cleanup:
-      - /share/doc
-      - /share/man
   - name: libXaw
     buildsystem: autotools
     sources:
@@ -68,9 +75,6 @@ modules:
           type: anitya
           project-id: 1766
           tag-template: libXaw-$version
-    cleanup:
-      - /share/doc
-      - /share/man
   - name: libXRes
     buildsystem: autotools
     sources:
@@ -82,8 +86,6 @@ modules:
           type: anitya
           project-id: 1790
           tag-template: libXres-$version
-    cleanup:
-      - /share/man
   - name: max
     buildsystem: simple
     build-commands:
