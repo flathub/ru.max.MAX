@@ -104,6 +104,7 @@ modules:
           root: https://download.max.ru/linux/deb
           dist: stable
           component: main
+          is-main-source: true
       - type: script
         dest-filename: apply_extra.sh
         commands:
