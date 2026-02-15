@@ -1,35 +1,32 @@
 app-id: ru.max.MAX
-runtime: org.kde.Platform
-runtime-version: '6.9'
-sdk: org.kde.Sdk
-base: io.qt.qtwebengine.BaseApp
-base-version: '6.9'
+runtime: org.freedesktop.Platform
+runtime-version: '25.08'
+sdk: org.freedesktop.Sdk
 command: max
 separate-locales: false
 tags:
   - proprietary
 finish-args:
-  - --device=all
+  - --device=all # Camera
   - --share=ipc
   - --share=network
   - --socket=pulseaudio
   - --socket=x11 # MAX does not support wayland or fallback-x11
-  - --env=QTWEBENGINEPROCESS_PATH=/app/bin/QtWebEngineProcess
   - --talk-name=org.kde.StatusNotifierWatcher
-  - --filesystem=xdg-run/pipewire-0:ro
   - --filesystem=xdg-download
 cleanup:
-    - /include
-    - /lib/cmake
-    - /lib/*/cmake
-    - /lib/pkgconfig
-    - /mkspecs
-    - /share/doc
-    - /share/man
-    - '*.la'
-    - '*.a'
-cleanup-commands:
-    - /app/cleanup-BaseApp.sh
+  - /include
+  - /lib/cmake
+  - /lib/*/cmake
+  - /lib/pkgconfig
+  - /mkspecs
+  - /share/aclocal
+  - /share/doc
+  - /share/et
+  - /share/examples
+  - /share/man
+  - '*.la'
+  - '*.a'
 modules:
   - name: xorg-font-util
     buildsystem: autotools
@@ -42,6 +39,8 @@ modules:
           type: anitya
           project-id: 15055
           tag-template: font-util-$version
+    cleanup:
+      - /bin
   - name: libfontenc
     buildsystem: autotools
     sources:
@@ -86,11 +85,31 @@ modules:
           type: anitya
           project-id: 1790
           tag-template: libXres-$version
+  - name: krb5
+    buildsystem: autotools
+    subdir: src
+    config-opts:
+      - --localstatedir=/var/lib
+      - --sbindir=${FLATPAK_DEST}/bin
+      - --disable-rpath
+      - --disable-static
+    sources:
+      - type: archive
+        url: https://kerberos.org/dist/krb5/1.22/krb5-1.22.2.tar.gz
+        sha256: 3243ffbc8ea4d4ac22ddc7dd2a1dc54c57874c40648b60ff97009763554eaf13
+        x-checker-data:
+          type: html
+          url: https://kerberos.org/dist/
+          version-pattern: Kerberos V5 Release ([\d\.-]*) - current release
+          url-template: https://kerberos.org/dist/krb5/$version0.$version1/krb5-$version.tar.gz
+    cleanup:
+      - /bin
   - name: max
     buildsystem: simple
     build-commands:
-      - install -Dm 755 max.sh ${FLATPAK_DEST}/bin/max
+      - ln -sf ${FLATPAK_DEST}/extra/max/bin/max ${FLATPAK_DEST}/bin/max
       - install -Dm 755 apply_extra.sh ${FLATPAK_DEST}/bin/apply_extra
+      - install -Dm 644 krb5.conf -t ${FLATPAK_DEST}/etc/
       - install -Dm 644 ${FLATPAK_ID}.metainfo.xml ${FLATPAK_DEST}/share/metainfo/${FLATPAK_ID}.metainfo.xml
       - install -Dm 644 MAX.png ${FLATPAK_DEST}/share/icons/hicolor/512x512/apps/${FLATPAK_ID}.png
       - install -Dm 644 ${FLATPAK_ID}.desktop ${FLATPAK_DEST}/share/applications/${FLATPAK_ID}.desktop
@@ -112,11 +131,10 @@ modules:
         commands:
           - bsdtar -Oxf MAX.deb data.tar.xz | bsdtar -xf - --strip-components=3 ./usr/share/max
           - rm MAX.deb
-      - type: script
-        dest-filename: max.sh
-        commands:
-          - export LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:/app/share/max/lib64:/app/share/max/lib
-          - /app/extra/max/bin/max "$@"
+          - ln -sf ../bin/max-service/lib64/libpulsecommon-14.0.so max/lib64/libpulsecommon-14.0.so
+          - ln -sf ../../lib64/libtracernative.so max/bin/max-service/libtracernative.so
+      - type: file
+        path: krb5.conf
       - type: file
         path: ru.max.MAX.desktop
       - type: file
