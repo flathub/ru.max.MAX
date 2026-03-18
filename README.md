@@ -1,8 +1,9 @@
 # MAX
 
-This repo hosts the flatpak version of [MAX Messenger](https://max.ru/)
+This repo hosts the flatpak wrapper for the desktop version of [MAX Messenger](https://max.ru/) and does not contain any MAX-licensed binary code.
+Instead, it is downloaded and converted to flatpak format on the fly from the official MAX repository by running the flatpak install/update commands.
 
-Note that this is an **unofficial** redistribution.
+**NOTICE: This wrapper is not verified by, affiliated with, or supported by max.ru.**
 
 ## Issue reporting
 

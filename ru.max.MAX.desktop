@@ -8,4 +8,4 @@ StartupWMClass=MAX
 Comment=Fast and lightweight app for communication and everyday tasks
 Comment[ru]=Быстрое и лёгкое приложение для общения и решения повседневных задач
 MimeType=x-scheme-handler/max;
-Categories=Network;
+Categories=Network;InstantMessaging;VideoConference;Telephony
