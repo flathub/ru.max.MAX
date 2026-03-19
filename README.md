@@ -7,7 +7,7 @@ Instead, it is downloaded and converted to flatpak format on the fly from the of
 
 ## Issue reporting
 
-**Please only report issues in this repo that are specific to the flatpak version.**
+**Please only report issues in this repo that are specific to the flatpak wrapper.**
 
 Issues that can be replicated in another release should be reported via [MAX's help page](https://help.max.ru/).
 Make sure, that the reported issue is **not** flatpak-related.
