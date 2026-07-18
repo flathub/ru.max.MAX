@@ -15,10 +15,8 @@
   <url type="help">https://help.max.ru/</url>
   <update_contact>help@max.ru</update_contact>
   <description>
-    <p>**This wrapper is not verified by, affiliated with, or supported by max.ru.**</p>
     <p>**To sign up for the messaging app, you need a valid mobile phone number from one of the supported countries.**</p>
     <p>Messenger with a built-in mini-app platform, chatbot builders, and a payment system.</p>
-    <p xml:lang="ru">**Данная обертка над официальной версией для компьютера не проверена, не связана и не поддерживается max.ru.**</p>
     <p xml:lang="ru">**Для регистрации в мессенджере необходим действующий номер мобильного телефона одной из поддерживаемых стран.**</p>
     <p xml:lang="ru">MAX — это быстрое и лёгкое приложение для обмена сообщениями, которое работает на любых устройствах — смартфонах и компьютерах. В него также встроена платформа мини-приложений, конструкторы чат-ботов и платежная система.</p>
   </description>
