@@ -133,7 +133,6 @@ modules:
           - bsdtar -Oxf MAX.deb data.tar.xz | bsdtar -xf - --strip-components=3 ./usr/share/max
           - rm MAX.deb
           - ln -sf ../bin/max-service/lib64/libpulsecommon-14.0.so max/lib64/libpulsecommon-14.0.so
-          - ln -sf ../../lib64/libtracernative.so max/bin/max-service/libtracernative.so
       - type: file
         path: krb5.conf
       - type: file
