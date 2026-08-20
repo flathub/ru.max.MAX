@@ -117,9 +117,9 @@ modules:
     sources:
       - type: extra-data
         filename: MAX.deb
-        url: https://download.max.ru/linux/deb/pool/main/m/max/MAX-26.27.2.76730.deb
-        sha256: a62aa53497d43b3068b0c50ce59250464bc591b1926773c44a8e9294289f175e
-        size: 303915166
+        url: https://download.max.ru/linux/deb/pool/main/m/max/MAX-26.28.0.77135.deb
+        sha256: 44856e49b58036859699950927054c1d0d09bebcdeffbae8cb97429b59ab7beb
+        size: 306886314
         x-checker-data:
           type: debian-repo
           package-name: max
