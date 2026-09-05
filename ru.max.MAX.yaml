@@ -1,6 +1,6 @@
 app-id: ru.max.MAX
 runtime: org.freedesktop.Platform
-runtime-version: '25.08'
+runtime-version: '26.08'
 sdk: org.freedesktop.Sdk
 command: max
 separate-locales: false
@@ -99,10 +99,13 @@ modules:
         url: https://kerberos.org/dist/krb5/1.22/krb5-1.22.2.tar.gz
         sha256: 3243ffbc8ea4d4ac22ddc7dd2a1dc54c57874c40648b60ff97009763554eaf13
         x-checker-data:
-          type: html
-          url: https://kerberos.org/dist/
-          version-pattern: Kerberos V5 Release ([\d\.-]*) - current release
-          url-template: https://kerberos.org/dist/krb5/$version0.$version1/krb5-$version.tar.gz
+          type: anitya
+          project-id: 13287
+          stable-only: true
+          url-template: https://kerberos.org/dist/krb5/${version0}.${version1}/krb5-${version0}.${version1}.${version2}.tar.gz
+      # https://github.com/krb5/krb5/pull/1471/commits/ad4dcf1856dadc4b352b5c8ff08e51c7290fb41f
+      - type: patch
+        path: krb5-1.22.patch
     cleanup:
       - /bin
   - name: max
@@ -117,9 +120,9 @@ modules:
     sources:
       - type: extra-data
         filename: MAX.deb
-        url: https://download.max.ru/linux/deb/pool/main/m/max/MAX-26.29.1.78069.deb
-        sha256: 177dde29babb6abddd0f40c4b86b7c15cf807491e26cfd348948ac11e5e9c8ed
-        size: 307682852
+        url: https://download.max.ru/linux/deb/pool/main/m/max/MAX-26.30.0.78253.deb
+        sha256: a8c211d1291fc46ca70feeab2a5c27f222d7892421ae31275975749706b470db
+        size: 306001384
         x-checker-data:
           type: debian-repo
           package-name: max
