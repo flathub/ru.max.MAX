@@ -40,7 +40,7 @@
   </recommends>
   <releases>
     <release version="26.37.0" date="2026-10-27">
-      <description></description>
+      <description><p>Update MAX.deb to MAX-26.37.0.81740</p></description>
     </release>
     <release version="26.36.0" date="2026-10-18">
       <description><p>Update MAX.deb to MAX-26.36.0.81334</p></description>
