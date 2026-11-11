@@ -96,16 +96,13 @@ modules:
       - --disable-static
     sources:
       - type: archive
-        url: https://kerberos.org/dist/krb5/1.22/krb5-1.22.2.tar.gz
-        sha256: 3243ffbc8ea4d4ac22ddc7dd2a1dc54c57874c40648b60ff97009763554eaf13
+        url: https://kerberos.org/dist/krb5/1.22/krb5-1.22.3.tar.gz
+        sha256: fe90af8441ad9fa9b064b8e53077cefb782a96f8a68276b031dc54af1789ff0b
         x-checker-data:
           type: anitya
           project-id: 13287
           stable-only: true
           url-template: https://kerberos.org/dist/krb5/${version0}.${version1}/krb5-${version0}.${version1}.${version2}.tar.gz
-      # https://github.com/krb5/krb5/pull/1471/commits/ad4dcf1856dadc4b352b5c8ff08e51c7290fb41f
-      - type: patch
-        path: krb5-1.22.patch
     cleanup:
       - /bin
   - name: max
@@ -120,9 +117,9 @@ modules:
     sources:
       - type: extra-data
         filename: MAX.deb
-        url: https://download.max.ru/linux/deb/pool/main/m/max/MAX-26.38.1.82700.deb
-        sha256: 9bcd1624e4a6ce5572cbdba176b5f19529d8f4b171466656fba7a131851879f8
-        size: 313717942
+        url: https://download.max.ru/linux/deb/pool/main/m/max/MAX-26.39.0.82726.deb
+        sha256: 4f156439e202561addf0e9cab4af2462ad9a75593a9a4e324d49191a290b5437
+        size: 320525624
         x-checker-data:
           type: debian-repo
           package-name: max
