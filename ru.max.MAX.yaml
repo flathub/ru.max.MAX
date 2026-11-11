@@ -103,9 +103,6 @@ modules:
           project-id: 13287
           stable-only: true
           url-template: https://kerberos.org/dist/krb5/${version0}.${version1}/krb5-${version0}.${version1}.${version2}.tar.gz
-      # https://github.com/krb5/krb5/pull/1471/commits/ad4dcf1856dadc4b352b5c8ff08e51c7290fb41f
-      - type: patch
-        path: krb5-1.22.patch
     cleanup:
       - /bin
   - name: max
