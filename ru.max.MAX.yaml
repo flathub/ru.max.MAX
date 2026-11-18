@@ -47,8 +47,8 @@ modules:
     sources:
       - type: git
         url: https://gitlab.freedesktop.org/xorg/lib/libfontenc.git
-        commit: 780d1f6f192a331de7b298a96e23ebc44d2a884b
-        tag: libfontenc-1.1.9
+        commit: eb42c925cab00d235b05e649eb4fb4a1858b67b9
+        tag: libfontenc-1.1.10
         x-checker-data:
           type: anitya
           project-id: 1613
